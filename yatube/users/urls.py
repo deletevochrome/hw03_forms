@@ -1,4 +1,11 @@
-from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView, PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
+from django.contrib.auth.views import (LoginView,
+                                       LogoutView,
+                                       PasswordChangeView,
+                                       PasswordChangeDoneView,
+                                       PasswordResetView,
+                                       PasswordResetDoneView,
+                                       PasswordResetConfirmView,
+                                       PasswordResetCompleteView)
 from django.urls import path
 from . import views
 app_name = 'users'
@@ -9,7 +16,7 @@ urlpatterns = [
     path('signup/', views.SignUp.as_view(), name='signup'),
     path(
         'logout/',
-        # Прямо в описании обработчика укажем шаблон, 
+        # Прямо в описании обработчика укажем шаблон,
         # который должен применяться для отображения возвращаемой страницы.
         # Да, во view-классах так можно! Как их не полюбить.
         LogoutView.as_view(template_name='users/logged_out.html'),
@@ -38,7 +45,7 @@ urlpatterns = [
             template_name='users/password_reset_form.html'),
         name='password_reset'
     ),
-    # сообщение об Оtправке ссылки для восстановки пароля 
+    # сообщение об Оtправке ссылки для восстановки пароля
     path(
         'password_reset/done/',
         PasswordResetDoneView.as_view(
