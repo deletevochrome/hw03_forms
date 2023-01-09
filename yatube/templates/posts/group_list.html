@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}{{group.title}}{% endblock %}
+{% block header %}<h1>{{group.title}}</h1>{% endblock %}
+{% block content %}
+<p>{{group.description|linebreaksbr}}</p>
+  {% for post in page_obj %}
+    <p>
+        <ul>
+          <li>Автор:<a href="{% url 'posts:profile' post.author.username %}">{{post.author.get_full_name}}</a></li>
+          <li>Дата публикации: {{post.pub_date|date:"d E Y" }}</li>
+        </ul>
+        <br>
+        {{post.text|linebreaksbr}}
+			
+    </p>
+	<hr>
+  {%endfor%}
+  {% include 'posts/includes/paginator.html' with page=page_obj %}
+{% endblock %}
