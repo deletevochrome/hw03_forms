@@ -4,13 +4,13 @@ from django.core.paginator import Paginator
 from .models import Post, Group, User
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
-# POST_COUNT: int = 10
+postsper: int = 10
 # Главная страница
 # @login_required
 
 
 def paginator_func(posts, request):
-    paginator = Paginator(posts, 10)
+    paginator = Paginator(posts, postsper)
     page_number = request.GET.get('page')
     return paginator.get_page(page_number)
 
